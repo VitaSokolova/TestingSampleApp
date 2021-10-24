@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TestingSampleApp</string>
+    <string name="weather_in_london_title_text">Weather in London</string>
+    <string name="error_text">Oooops! Something went wrong. Try again later</string>
+    <string name="retry_btn">retry</string>
+    <string name="current_temperature">Current t°: %.1f°</string>
+    <string name="day_temperature">Day t°: %.1f°</string>
+    <string name="night_temperature">Night t°: %.1f°</string>
 </resources>

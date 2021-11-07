@@ -41,8 +41,6 @@ class WeatherOverviewActivity : AppCompatActivity() {
 
         loadingIndicator.isVisible = forecastState is ForecastState.Loading
         errorContainer.isVisible = forecastState is ForecastState.Error
-        dayTemperature.isVisible = forecastState is ForecastState.Data
-        nightTemperature.isVisible = forecastState is ForecastState.Data
-        currentTemperature.isVisible = forecastState is ForecastState.Data
+        dataContainer.isVisible = forecastState is ForecastState.Data
     }
 }

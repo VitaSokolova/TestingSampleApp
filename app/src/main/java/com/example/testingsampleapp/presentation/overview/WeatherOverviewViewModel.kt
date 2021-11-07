@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testingsampleapp.domain.GetDailyForecastUseCase
 import com.example.testingsampleapp.presentation.overview.models.ForecastState
+import com.example.testingsampleapp.utils.dispatchers.DispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,6 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherOverviewViewModel @Inject constructor(
+    private val dispatcherProvider: DispatcherProvider,
     private val getDailyForecastUseCase: GetDailyForecastUseCase
 ) : ViewModel() {
 
@@ -26,7 +28,7 @@ class WeatherOverviewViewModel @Inject constructor(
             _forecastState.value = ForecastState.Loading
             try {
                 _forecastState.value = ForecastState.Data(
-                    forecast = withContext(Dispatchers.IO) { getDailyForecastUseCase(LONDON_ID) }
+                    forecast = withContext(dispatcherProvider.io()) { getDailyForecastUseCase(LONDON_ID) }
                 )
             } catch (e: Exception) {
                 _forecastState.value = ForecastState.Error

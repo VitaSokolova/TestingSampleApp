@@ -14,8 +14,6 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "com.example.testingsampleapp.presentation.overview.CustomTestRunner"
     }
 
     buildTypes {
@@ -61,8 +59,6 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.1"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.1"
 
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
     //Network
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -91,18 +87,10 @@ dependencies {
     // Hilt
     testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
-    // For instrumented tests.
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
-    // ...with Kotlin.
-    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     //For runBlockingTest, CoroutineDispatcher etc.
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
 
     //For InstantTaskExecutorRule
     testImplementation "androidx.arch.core:core-testing:2.1.0"
-
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation 'androidx.test:runner:1.4.0'
-    androidTestImplementation 'androidx.test:rules:1.4.0'
 }

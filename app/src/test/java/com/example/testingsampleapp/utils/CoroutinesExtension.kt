@@ -1,6 +1,8 @@
 package com.example.testingsampleapp.utils
 
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.resetMain
@@ -8,23 +10,21 @@ import kotlinx.coroutines.test.setMain
 import org.junit.jupiter.api.extension.AfterEachCallback
 import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.rules.TestWatcher
+import org.junit.runner.Description
+import kotlin.coroutines.ContinuationInterceptor
 
-/**
- * Add this JUnit 5 extension to your test class using
- * @JvmField
- * @RegisterExtension
- * val coroutinesTestExtension = CoroutinesTestExtension()
- */
-class CoroutinesTestExtension(
-    private val dispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
-) : BeforeEachCallback, AfterEachCallback, TestCoroutineScope by TestCoroutineScope(dispatcher) {
+@ExperimentalCoroutinesApi
+class CoroutineRule : TestWatcher(), TestCoroutineScope by TestCoroutineScope() {
 
-    override fun beforeEach(context: ExtensionContext?) {
-        Dispatchers.setMain(dispatcher)
+    override fun starting(description: Description) {
+        super.starting(description)
+        Dispatchers.setMain(this.coroutineContext[ContinuationInterceptor] as CoroutineDispatcher)
     }
 
-    override fun afterEach(context: ExtensionContext?) {
-        cleanupTestCoroutines()
+    override fun finished(description: Description) {
+        super.finished(description)
         Dispatchers.resetMain()
     }
+
 }

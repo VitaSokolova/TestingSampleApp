@@ -12,17 +12,17 @@ import io.mockk.mockk
 import org.junit.Test
 import java.time.LocalDateTime
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.testingsampleapp.utils.CoroutinesTestExtension
+import com.example.testingsampleapp.utils.CoroutineRule
 import io.mockk.coVerify
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
-import org.junit.jupiter.api.extension.RegisterExtension
 import java.lang.Exception
 
 class WeatherOverviewViewModelTest {
 
-    @JvmField
-    @RegisterExtension
-    val coroutinesTestExtension = CoroutinesTestExtension()
+    @ExperimentalCoroutinesApi
+    @get:Rule
+    var mainCoroutineRule = CoroutineRule()
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()

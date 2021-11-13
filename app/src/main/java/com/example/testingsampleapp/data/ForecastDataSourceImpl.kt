@@ -1,11 +1,8 @@
 package com.example.testingsampleapp.data
 
-import android.util.Log
-import androidx.annotation.VisibleForTesting
 import com.example.testingsampleapp.data.model.toModel
 import com.example.testingsampleapp.domain.models.DailyForecast
 import java.time.LocalDate
-import java.time.ZoneId
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,11 +12,10 @@ class ForecastDataSourceImpl @Inject constructor(private val forecastApi: Foreca
     override suspend fun getDailyForecast(cityId: String): DailyForecast {
         val datePath = formatDateToApiFormat(LocalDate.now())
         val forecasts = forecastApi.getDailyForecast(cityId, datePath).map { it.toModel() }
-        return forecasts.sortedByDescending { it.created }.first()
+        return forecasts.maxByOrNull { it.created } ?: error("No forecast received")
     }
 
-    @VisibleForTesting
-    fun formatDateToApiFormat(date: LocalDate): String {
+    private fun formatDateToApiFormat(date: LocalDate): String {
         return with(date) { "$year/$monthValue/$dayOfMonth" }
     }
 }

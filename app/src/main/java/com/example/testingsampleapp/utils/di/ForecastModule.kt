@@ -1,6 +1,7 @@
 package com.example.testingsampleapp.utils.di
 
 import com.example.testingsampleapp.data.*
+import com.example.testingsampleapp.domain.ForecastRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

@@ -1,5 +1,6 @@
 package com.example.testingsampleapp.data
 
+import com.example.testingsampleapp.domain.ForecastRepository
 import com.example.testingsampleapp.domain.models.DailyForecast
 import javax.inject.Inject
 import javax.inject.Singleton

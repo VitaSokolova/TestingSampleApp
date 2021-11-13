@@ -1,4 +1,4 @@
-package com.example.testingsampleapp.data
+package com.example.testingsampleapp.domain
 
 import com.example.testingsampleapp.domain.models.DailyForecast
 

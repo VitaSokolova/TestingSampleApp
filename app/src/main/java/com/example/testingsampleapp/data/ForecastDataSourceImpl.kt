@@ -1,6 +1,6 @@
 package com.example.testingsampleapp.data
 
-import com.example.testingsampleapp.data.model.toModel
+import com.example.testingsampleapp.data.models.toModel
 import com.example.testingsampleapp.domain.models.DailyForecast
 import java.time.LocalDate
 import javax.inject.Inject

@@ -1,7 +1,6 @@
 package com.example.testingsampleapp.data
 
-import com.example.testingsampleapp.data.model.DailyForecastDto
-import com.example.testingsampleapp.data.model.DailyForecastResponse
+import com.example.testingsampleapp.data.models.DailyForecastDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 

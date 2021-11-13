@@ -13,6 +13,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class ForecastModule {
+
     companion object {
         @Provides
         @Singleton
@@ -26,5 +27,4 @@ abstract class ForecastModule {
     @Binds
     @Singleton
     abstract fun provideForecastRepository(forecastRepositoryImpl: ForecastRepositoryImpl): ForecastRepository
-
 }

@@ -1,10 +1,8 @@
-package com.example.testingsampleapp.data.model
+package com.example.testingsampleapp.data.models
 
 import com.example.testingsampleapp.domain.models.DailyForecast
-import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatter.ISO_INSTANT
 
 fun DailyForecastDto.toModel(): DailyForecast {

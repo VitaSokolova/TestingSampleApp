@@ -16,7 +16,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherOverviewViewModel @Inject constructor(
-    private val dispatcherProvider: DispatcherProvider,
     private val getDailyForecastUseCase: GetDailyForecastUseCase
 ) : ViewModel() {
 
@@ -28,7 +27,9 @@ class WeatherOverviewViewModel @Inject constructor(
             _forecastState.value = ForecastState.Loading
             try {
                 _forecastState.value = ForecastState.Data(
-                    forecast = withContext(dispatcherProvider.io()) { getDailyForecastUseCase(LONDON_ID) }
+                    forecast = withContext(Dispatchers.IO) {
+                        getDailyForecastUseCase(LONDON_ID)
+                    }
                 )
             } catch (e: Exception) {
                 _forecastState.value = ForecastState.Error

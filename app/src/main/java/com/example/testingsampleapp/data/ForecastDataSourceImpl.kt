@@ -11,7 +11,9 @@ class ForecastDataSourceImpl @Inject constructor(private val forecastApi: Foreca
 
     override suspend fun getDailyForecast(cityId: String): DailyForecast {
         val datePath = formatDateToApiFormat(LocalDate.now())
-        val forecasts = forecastApi.getDailyForecast(cityId, datePath).map { it.toModel() }
+        val forecasts = forecastApi.getDailyForecast(cityId, datePath).map {
+            it.toModel()
+        }
         return forecasts.maxByOrNull { it.created } ?: error("No forecast received")
     }
 

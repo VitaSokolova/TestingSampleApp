@@ -6,6 +6,7 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.rule.ActivityTestRule
 import com.example.testingsampleapp.R
 import com.example.testingsampleapp.data.ForecastRepository
 import com.example.testingsampleapp.domain.models.DailyForecast
@@ -70,20 +71,14 @@ class WeatherOverviewActivityTest {
     }
 
     @Test
-    fun whenRetryButtonIsClickedLoadingStarts() {
-        coEvery { forecastRepository.getDailyForecast(any()) } throws Throwable()
+    fun whenDataIsLoadingShouldShowLoader() {
+        coEvery { forecastRepository.getDailyForecast(any()) } coAnswers {
+            delay(250L)
+            dailyForecast
+        }
         ActivityScenario.launch(WeatherOverviewActivity::class.java).use {
-
-            onView(withId(R.id.retry_btn))
-                .perform(click())
-
-            coEvery { forecastRepository.getDailyForecast(any()) } coAnswers {
-                delay(1000L)
-                dailyForecast
-            }
-
             onView(withId(R.id.loading_indicator))
-                .check(matches(not(isDisplayed())))
+                .check(matches(isDisplayed()))
         }
     }
 }

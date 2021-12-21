@@ -34,9 +34,18 @@ class WeatherOverviewActivity : AppCompatActivity() {
 
     private fun renderForecastState(forecastState: ForecastState) = with(binding) {
         if (forecastState is ForecastState.Data) {
-            dayTemperature.text = resources.getString(R.string.day_temperature, forecastState.forecast.dayTemperature)
-            nightTemperature.text = resources.getString(R.string.night_temperature, forecastState.forecast.nightTemperature)
-            currentTemperature.text = resources.getString(R.string.current_temperature, forecastState.forecast.currentTemperature)
+            dayTemperature.text = resources.getString(
+                R.string.day_temperature,
+                forecastState.forecast.dayTemperature
+            )
+            nightTemperature.text = resources.getString(
+                R.string.night_temperature,
+                forecastState.forecast.nightTemperature
+            )
+            currentTemperature.text = resources.getString(
+                R.string.current_temperature,
+                forecastState.forecast.currentTemperature
+            )
         }
 
         loadingIndicator.isVisible = forecastState is ForecastState.Loading
